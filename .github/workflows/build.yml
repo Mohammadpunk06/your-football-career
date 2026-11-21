@@ -1,4 +1,5 @@
-name: Build Android APK
+
+name: Build Your Football Career
 
 on:
   workflow_dispatch:
@@ -15,14 +16,21 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
       - name: Extract project
-        run: |
-          unzip -q YourFootballCareer-GitHub-Ready.zip
-          cd YourFootballCareer
-          gradle --no-daemon assembleDebug
+        run: unzip -q YourFootballCareer-GitHub-Ready.zip
+
+      - name: Build APK
+        working-directory: YourFootballCareer
+        run: gradle --no-daemon assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: YourFootballCareer-APK
           path: YourFootballCareer/app/build/outputs/apk/debug/app-debug.apk
+          
