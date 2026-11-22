@@ -22,7 +22,7 @@ jobs:
           gradle-version: '8.9'
 
       - name: Extract project
-        run: unzip -q YourFootballCareer-Persian-Beta.zip
+        run: unzip -q YourFootballCareer-Persian-Persistent.zip
 
       - name: Build APK
         working-directory: YourFootballCareer
