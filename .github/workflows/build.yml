@@ -1,4 +1,3 @@
-
 name: Build Your Football Career
 
 on:
@@ -7,6 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -21,8 +21,11 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Extract project
+      - name: Extract Android project
         run: unzip -q YourFootballCareer-Persian-Persistent.zip
+
+      - name: Extract website source
+        run: unzip -q cgw.zip -d website-source
 
       - name: Build APK
         working-directory: YourFootballCareer
@@ -33,4 +36,3 @@ jobs:
         with:
           name: YourFootballCareer-APK
           path: YourFootballCareer/app/build/outputs/apk/debug/app-debug.apk
-          
